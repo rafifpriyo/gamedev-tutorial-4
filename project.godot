@@ -53,6 +53,10 @@ jump={
  ]
 }
 
+[mono]
+
+project/assembly_name="Tutorial 4 Template"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

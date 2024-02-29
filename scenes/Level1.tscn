@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/tileset/snow.tres" type="TileSet" id=2]
+[ext_resource path="res://scenes/AreaTrigger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Rocket.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/SpawnerToxicFish.tscn" type="PackedScene" id=5]
 
 [node name="Level1" type="Node2D"]
 
@@ -9,3 +13,22 @@ position = Vector2( 144, 52 )
 collision_layer = 3
 collision_mask = 3
 speed = 300
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 65545, 1, 65541, 65546, 1, 65543, 65547, 1, 65543, 65548, 1, 65540, 131072, 1, 65543, 131073, 1, 65543, 131074, 1, 65543, 131075, 1, 65543, 131076, 1, 65543, 131077, 1, 65543, 131078, 1, 65543, 131079, 1, 65543, 131080, 1, 65543, 131081, 1, 8, 131082, 1, 1, 131083, 1, 1, 131084, 1, 7, 131085, 1, 65540, 131089, 1, 65541, 131090, 1, 65543, 131091, 1, 65543, 131092, 1, 4, 131094, 1, 65537, 131095, 1, 65538, 131096, 1, 65539, 196608, 1, 1, 196609, 1, 1, 196610, 1, 1, 196611, 1, 1, 196612, 1, 1, 196613, 1, 1, 196614, 1, 1, 196615, 1, 1, 196616, 1, 1, 196617, 1, 1, 196618, 1, 1, 196619, 1, 1, 196620, 1, 1, 196621, 1, 7, 196622, 1, 6, 196624, 1, 5, 196625, 1, 8, 196626, 1, 1, 196627, 1, 1 )
+
+[node name="AreaTrigger" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2500, 574 )
+scale = Vector2( 100, 1 )
+sceneName = "Level1"
+
+[node name="Rocket" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3017, 15 )
+
+[node name="SpawnerToxicFish" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1598, -638 )
+
+[connection signal="body_entered" from="AreaTrigger" to="AreaTrigger" method="_on_AreaTrigger_body_entered"]
