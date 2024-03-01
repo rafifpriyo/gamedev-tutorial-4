@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/tileset/dirt.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Rocket.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/SpawnerToxicFish.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ToxicFistAlt.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/AreaTrigger.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=7]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 161, 197 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( 65550, 0, 65537, 65551, 0, 65539, 131082, 0, 65537, 131083, 0, 65538, 131084, 0, 65539, 131089, 0, 3, 131090, 0, 4, 196614, 0, 65537, 196615, 0, 65538, 196616, 0, 65539, 262144, 0, 65543, 262145, 0, 65543, 262146, 0, 65543, 262147, 0, 65543, 262148, 0, 65540, 262166, 0, 65537, 262167, 0, 65538, 262168, 0, 65539, 327680, 0, 1, 327681, 0, 1, 327682, 0, 1, 327683, 0, 1, 327684, 0, 7, 327685, 0, 65540, 327690, 0, 3, 327691, 0, 65543, 327692, 0, 65540, 327698, 0, 65541, 327699, 0, 65543, 327700, 0, 4, 393216, 0, 1, 393217, 0, 1, 393218, 0, 1, 393219, 0, 1, 393220, 0, 1, 393221, 0, 7, 393222, 0, 65543, 393223, 0, 65543, 393224, 0, 4, 393227, 0, 1, 393228, 0, 7, 393229, 0, 65543, 393230, 0, 65543, 393231, 0, 65543, 393232, 0, 65543, 393233, 0, 65543, 393234, 0, 8, 393235, 0, 1 )
+
+[node name="Rocket" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1504, 133 )
+scale = Vector2( 0.5, 0.5 )
+sceneName = "WinScreen"
+
+[node name="SpawnerToxicFish" parent="." instance=ExtResource( 4 )]
+position = Vector2( 800, -306 )
+obstacle = ExtResource( 5 )
+x_range = 800
+
+[node name="AreaTrigger" parent="." instance=ExtResource( 6 )]
+position = Vector2( 941, 572 )
+scale = Vector2( 50, 1 )
+sceneName = "Level2"
+
+[node name="SpawnerCoin" parent="." instance=ExtResource( 4 )]
+position = Vector2( 803, -226 )
+obstacle = ExtResource( 7 )
+x_range = 800
+delay_spawn = 0.3
+
+[connection signal="body_entered" from="AreaTrigger" to="AreaTrigger" method="_on_AreaTrigger_body_entered"]

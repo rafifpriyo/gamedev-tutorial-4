@@ -27,8 +27,10 @@ sceneName = "Level1"
 
 [node name="Rocket" parent="." instance=ExtResource( 4 )]
 position = Vector2( 3017, 15 )
+sceneName = "Level2"
 
 [node name="SpawnerToxicFish" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1598, -638 )
+x_range = 1600
 
 [connection signal="body_entered" from="AreaTrigger" to="AreaTrigger" method="_on_AreaTrigger_body_entered"]
